@@ -6,4 +6,21 @@
  */
 
 // 請在下方寫下你的程式碼
+type DataModel = {
+  id: number;
+  userId: number;
+  title: string;
+  completed: boolean;
+};
 
+export async function fetchData(url: string): Promise<DataModel> {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      resolve(data);
+    } catch (err) {
+      reject(err);
+    }
+  });
+}
